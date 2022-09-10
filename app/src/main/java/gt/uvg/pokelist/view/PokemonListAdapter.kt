@@ -1,5 +1,6 @@
 package gt.uvg.pokelist.view
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -28,8 +29,10 @@ class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.
         Picasso.get().load(pokemon.imageUrlBack).into(holder.pokemonImage);
 
         holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("pokemonId",pokemon.id)
             var navController = Navigation.findNavController(holder.itemView)
-            navController.navigate(R.id.action_mainFragment_to_detailFragment)
+            navController.navigate(R.id.action_mainFragment_to_detailFragment, bundle)
         }
     }
 
