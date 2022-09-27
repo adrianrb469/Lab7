@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import gt.uvg.pokelist.databinding.FragmentDetailBinding
-import gt.uvg.pokelist.repository.PokemonRepository
+
 
 class DetailFragment : Fragment() {
     private var _binding : FragmentDetailBinding? = null;
@@ -20,16 +20,15 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        val currentPokemon = args.currentPokemon
         val pokemonId = args.pokemonId
 
-        val pokemonList = PokemonRepository().getPokemonList()
-        val currentPokemon = pokemonList.get(pokemonId-1)
         _binding!!.pokemonNameTextView.text = currentPokemon.name
 
-        Picasso.get().load(currentPokemon.imageUrlFront).into(_binding!!.imageView2)
-        Picasso.get().load(currentPokemon.imageUrlBack).into(_binding!!.imageView3)
-        Picasso.get().load(currentPokemon.imageUrlShinnyFront).into(_binding!!.imageView4)
-        Picasso.get().load(currentPokemon.imageUrlShinnyBack).into(_binding!!.imageView5)
+        Picasso.get().load(currentPokemon.getImageUrlFront(pokemonId+1)).into(_binding!!.imageView2)
+        Picasso.get().load(currentPokemon.getImageUrlBack(pokemonId+1)).into(_binding!!.imageView3)
+        Picasso.get().load(currentPokemon.getImageUrlShinnyFront(pokemonId+1)).into(_binding!!.imageView4)
+        Picasso.get().load(currentPokemon.getImageUrlShinnyBack(pokemonId+1)).into(_binding!!.imageView5)
 
         return _binding!!.root
     }

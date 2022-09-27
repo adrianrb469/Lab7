@@ -14,8 +14,8 @@ import gt.uvg.pokelist.model.Pokemon
 class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.Adapter<PokemonListAdapter.PokemonListHolder>() {
 
     inner class PokemonListHolder(val itemBinding: ItemPokemonViewBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        val pokemonName = itemBinding.pokemonName;
-        val pokemonImage = itemBinding.pokemonPhoto;
+        val pokemonName = itemBinding.pokemonName2;
+        val pokemonImage = itemBinding.pokemonPhoto2;
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonListHolder {
@@ -26,13 +26,12 @@ class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.
     override fun onBindViewHolder(holder: PokemonListHolder, position: Int) {
         val pokemon = pokemonList[position]
         holder.pokemonName.text = pokemon.name;
-        Picasso.get().load(pokemon.imageUrlBack).into(holder.pokemonImage);
+        Picasso.get().load(pokemon.getImageUrlBack(position+1)).into(holder.pokemonImage);
 
         holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt("pokemonId",pokemon.id)
-            var navController = Navigation.findNavController(holder.itemView)
-            navController.navigate(R.id.action_mainFragment_to_detailFragment, bundle)
+                Navigation.findNavController(holder.itemView).navigate(
+                    MainFragmentDirections.actionMainFragmentToDetailFragment(pokemon, position+1)
+                )
         }
     }
 
