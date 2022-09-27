@@ -25,10 +25,10 @@ class DetailFragment : Fragment() {
 
         _binding!!.pokemonNameTextView.text = currentPokemon.name
 
-        Picasso.get().load(currentPokemon.getImageUrlFront(pokemonId+1)).into(_binding!!.imageView2)
-        Picasso.get().load(currentPokemon.getImageUrlBack(pokemonId+1)).into(_binding!!.imageView3)
-        Picasso.get().load(currentPokemon.getImageUrlShinnyFront(pokemonId+1)).into(_binding!!.imageView4)
-        Picasso.get().load(currentPokemon.getImageUrlShinnyBack(pokemonId+1)).into(_binding!!.imageView5)
+        Picasso.get().load(currentPokemon.getImageUrlFront(pokemonId)).into(_binding!!.imageView2)
+        Picasso.get().load(currentPokemon.getImageUrlBack(pokemonId)).into(_binding!!.imageView3)
+        Picasso.get().load(currentPokemon.getImageUrlShinnyFront(pokemonId)).into(_binding!!.imageView4)
+        Picasso.get().load(currentPokemon.getImageUrlShinnyBack(pokemonId)).into(_binding!!.imageView5)
 
         return _binding!!.root
     }

@@ -26,7 +26,7 @@ class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.
     override fun onBindViewHolder(holder: PokemonListHolder, position: Int) {
         val pokemon = pokemonList[position]
         holder.pokemonName.text = pokemon.name;
-        Picasso.get().load(pokemon.getImageUrlBack(position+1)).into(holder.pokemonImage);
+        Picasso.get().load(pokemon.getImageUrlFront(position+1)).into(holder.pokemonImage);
 
         holder.itemView.setOnClickListener {
                 Navigation.findNavController(holder.itemView).navigate(
